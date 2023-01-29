@@ -1,26 +1,22 @@
+import { BaseService } from './../app.service';
+import { DialoguePart } from './entities/dialogue-part.entity';
+import { InjectModel } from '@nestjs/sequelize';
 import { Injectable } from '@nestjs/common';
 import { CreateDialoguePartDto } from './dto/create-dialogue-part.dto';
 import { UpdateDialoguePartDto } from './dto/update-dialogue-part.dto';
 
 @Injectable()
-export class DialoguePartService {
-  create(createDialoguePartDto: CreateDialoguePartDto) {
-    return 'This action adds a new dialoguePart';
-  }
+export class DialoguePartService extends BaseService<
+  DialoguePart,
+  CreateDialoguePartDto,
+  UpdateDialoguePartDto
+> {
+  private dialoguePart;
 
-  findAll() {
-    return `This action returns all dialoguePart`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} dialoguePart`;
-  }
-
-  update(id: number, updateDialoguePartDto: UpdateDialoguePartDto) {
-    return `This action updates a #${id} dialoguePart`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} dialoguePart`;
+  constructor(
+    @InjectModel(DialoguePart) protected readonly mainRepo: typeof DialoguePart,
+  ) {
+    super(mainRepo);
+    this.dialoguePart = this.dialoguePart;
   }
 }

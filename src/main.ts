@@ -10,6 +10,7 @@ async function bootstrap() {
     .setTitle('rikki-tikki-tavi api')
     .setDescription('Апишка для приложения по изучению языков')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

@@ -23,18 +23,22 @@ export class UserService extends BaseService<
   CreateUserDto,
   UpdateUserDto
 > {
+  // private userRepository;
+
   constructor(
     @InjectModel(User) protected readonly userRepository: typeof User,
   ) {
     super(userRepository);
+    // this.userRepository = mainRepo;
   }
 
   // create(createUserDto: CreateDto) {
   //   return 'This action adds a new user';
   // }
 
-  async findAll(filter): Promise<string> {
-    // return this.userRepository.findAll(filter);
+  async findAll(filter?): Promise<string> {
+    const result = await this.userRepository.findAll(filter);
+    console.log({ result });
     return 'hello';
   }
 

@@ -18,34 +18,34 @@ import { MakeNullishOptional } from 'sequelize/types/utils';
 
 @Injectable()
 export class BaseController<T, CreateDto, UpdateDto> {
-  public service;
+  private baseService;
 
   constructor(service) {
-    this.service = service;
+    this.baseService = service;
   }
 
   @Post()
   create(@Body() createDto: CreateDto | string) {
-    return this.service.create(createDto);
+    return this.baseService.create(createDto);
   }
 
   @Get()
   findAll(@Query('filter') filter: Filterable<T>) {
-    return this.service.findAll(filter);
+    return this.baseService.findAll(filter);
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.service.findOne(id);
+    return this.baseService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateDto: UpdateDto) {
-    return this.service.update(id, updateDto);
+    return this.baseService.update(id, updateDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.service.remove(id);
+    return this.baseService.remove(id);
   }
 }
